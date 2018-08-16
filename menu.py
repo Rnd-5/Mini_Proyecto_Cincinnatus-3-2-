@@ -14,21 +14,46 @@ def Presentar_Menu():
     #print(nomJ1, nomJ2)
     time.sleep(2)
 
-mazo_1 = Mazo()
-listCartas = mazo_1.Generar_Mazo()
 
-misCartas1 = []
-misCartas2 = []
-
-while len(misCartas1) < 6:
-        misCartas1.append(listCartas.pop())
-        misCartas2.append(listCartas.pop())
-print(misCartas1, misCartas2)
+def Crear_Mazo():
+    mazo_1 = Mazo()
+    listCartas = mazo_1.Generar_Mazo()
+    return listCartas
 
 
-def Crear_Juagadores():
+listCartas = Crear_Mazo()
+
+
+def Crear_ConjuntoCarts(listCartas):
+    misCartas1 = []
+    misCartas2 = []
+    while len(misCartas2) < 5:
+            misCartas1.append(listCartas.pop())
+            misCartas2.append(listCartas.pop())
+    listMisCarts = [misCartas1, misCartas2]
+    return listMisCarts
+
+
+listMisCarts = Crear_ConjuntoCarts(listCartas)
+
+
+"""
+def Crear_Jugadores():
+    listMisCarts = Crear_ConjuntoCarts(listCartas)
     nombre = input(" ◘Introduzca el nombre del jugador 1: ")
-    jugador1 = Jugador(nombre=nombre, 0, )
+
+    jugador1 = Jugador(nombre, puntos=0, misCart=listMisCarts[0])
+    nombre = input(" ◘Introduzca el nombre del jugador 1: ")
+    jugador2 = Jugador(nombre, puntos=0, misCart=listMisCarts[1])
+    listJugadores = [jugador1, jugador2]
+    return listJugadores
+
+
+listJugadores = Crear_Jugadores()
+
+juan = listJugadores[0]
+pedro = listJugadores[1]
+"""
 
 """
 listCartas = [
@@ -48,7 +73,7 @@ def Mostrar_Carta(listCartas):
         #x += 1
         print("╔══════╗\n║  {}   ║\n║  de  ║\n║  {}   ║\n╚══════╝".format(carta.numCarta, carta.simbolo))
     #print(x)
-    time.sleep(5)
+    #time.sleep(5)
 
 
 def Mostrar_Mazo(cantdCart=5):
@@ -57,7 +82,7 @@ def Mostrar_Mazo(cantdCart=5):
           "║  {}   ║\n"
           "║cartas║\n"
           "╚══════╝".format(cantdCart))
-    time.sleep(2)
+    #time.sleep(2)
 """
 Presentar_Menu()
 os.system('cls')
@@ -80,9 +105,23 @@ opcAccion = input("Indique el numero de la accion que desea realizar: ")
 #Mostrar_Carta(listCartas)
 
 
+Mostrar_Carta(listMisCarts[0])
+print('==============================')
+Mostrar_Carta(listMisCarts[1])
+print('==============================')
+print(len(listCartas))
+print('==============================')
+print('#####################################')
+print('==============================')
+Crear_ConjuntoCarts(listCartas)
+listMisCarts = Crear_ConjuntoCarts(listCartas)
+Mostrar_Carta(listMisCarts[0])
+print('==============================')
+Mostrar_Carta(listMisCarts[1])
+print('==============================')
+print(len(listCartas))
 
-
-
+input()
 
 
 

@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8af7a0b6-aace-4ea5-be9d-07bba6367657" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Proyecto_Cartas(3y2).iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Proyecto_Cartas(3y2).iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clases.py" beforeDir="false" afterPath="$PROJECT_DIR$/clases.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pruebas.py" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +16,8 @@
       <file leaf-file-name="clases.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/clases.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="515">
-              <caret line="35" column="3" lean-forward="true" selection-start-line="35" selection-start-column="3" selection-end-line="35" selection-end-column="3" />
+            <state relative-caret-position="420">
+              <caret line="41" column="51" lean-forward="true" selection-start-line="41" selection-start-column="51" selection-end-line="41" selection-end-column="51" />
               <folding>
                 <element signature="e#0#67#1" />
                 <element signature="e#93#229#0" />
@@ -36,10 +30,14 @@
       <file leaf-file-name="menu.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/menu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+            <state relative-caret-position="361">
+              <caret line="123" column="7" selection-start-line="123" selection-start-column="7" selection-end-line="123" selection-end-column="7" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#84#409#0" />
+                <element signature="e#433#510#0" />
+                <element signature="e#580#810#0" />
+                <element signature="e#887#1222#0" />
                 <element signature="e#377#511#1" />
                 <element signature="e#702#895#0" />
                 <element signature="e#804#950#0" />
@@ -276,6 +274,11 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/clases.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -306,6 +309,10 @@
           <caret line="39" column="32" lean-forward="true" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#84#409#0" />
+            <element signature="e#433#510#0" />
+            <element signature="e#580#810#0" />
+            <element signature="e#887#1222#0" />
             <element signature="e#377#511#1" />
             <element signature="e#702#895#0" />
             <element signature="e#804#950#0" />
@@ -334,8 +341,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/clases.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="515">
-          <caret line="35" column="3" lean-forward="true" selection-start-line="35" selection-start-column="3" selection-end-line="35" selection-end-column="3" />
+        <state relative-caret-position="420">
+          <caret line="41" column="51" lean-forward="true" selection-start-line="41" selection-start-column="51" selection-end-line="41" selection-end-column="51" />
           <folding>
             <element signature="e#0#67#1" />
             <element signature="e#93#229#0" />
@@ -346,10 +353,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/menu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+        <state relative-caret-position="361">
+          <caret line="123" column="7" selection-start-line="123" selection-start-column="7" selection-end-line="123" selection-end-column="7" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#84#409#0" />
+            <element signature="e#433#510#0" />
+            <element signature="e#580#810#0" />
+            <element signature="e#887#1222#0" />
             <element signature="e#377#511#1" />
             <element signature="e#702#895#0" />
             <element signature="e#804#950#0" />
