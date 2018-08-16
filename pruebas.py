@@ -8,8 +8,9 @@ def add_nums():
 
 print(add_nums())
 """
+from shutil import move
 
-
+"""
 def say_hi():
     return 'hi!'
 
@@ -43,3 +44,25 @@ a.say_something()
 a.say_something_else()
 # Hi there!
 a.prepare()
+"""
+
+from clases import *
+from menu import *
+
+listSimbl = ['♥', '♦', '♣', '♠']
+
+print(listSimbl.pop())
+print(listSimbl)
+x = listSimbl.pop()
+print(x)
+print(listSimbl)
+y = '♦' in listSimbl
+print(y)
+
+nombre = Presentar_Menu()
+
+jugador1 = Jugador(nombre[0])
+
+print(jugador1.nombre)
+
+Mostrar_Carta(listCartas)
