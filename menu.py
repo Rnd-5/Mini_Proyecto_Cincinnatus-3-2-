@@ -17,29 +17,30 @@ def Presentar_Menu():
 
 def Crear_Mazo():
     mazo_1 = Mazo()
-    listCartas = mazo_1.Generar_Mazo()
-    return listCartas
+    mazo_1.cartsMazo = mazo_1.Generar_Mazo()
+    return mazo_1.cartsMazo
 
 
-listCartas = Crear_Mazo()
+cartsMazo = Crear_Mazo()
 
 
-def Crear_ConjuntoCarts(listCartas):
+def Crear_ConjuntoCarts(cartsMazo):
     misCartas1 = []
     misCartas2 = []
     while len(misCartas2) < 5:
-            misCartas1.append(listCartas.pop())
-            misCartas2.append(listCartas.pop())
+            misCartas1.append(cartsMazo.pop())
+            misCartas2.append(cartsMazo.pop())
     listMisCarts = [misCartas1, misCartas2]
-    return listMisCarts
+    return listMisCarts, cartsMazo
 
 
-listMisCarts = Crear_ConjuntoCarts(listCartas)
+listMisCarts = Crear_ConjuntoCarts(cartsMazo)
+
+print(listMisCarts)
 
 
-"""
 def Crear_Jugadores():
-    listMisCarts = Crear_ConjuntoCarts(listCartas)
+    listMisCarts = Crear_ConjuntoCarts(cartsMazo)
     nombre = input(" ◘Introduzca el nombre del jugador 1: ")
 
     jugador1 = Jugador(nombre, puntos=0, misCart=listMisCarts[0])
@@ -49,31 +50,39 @@ def Crear_Jugadores():
     return listJugadores
 
 
-listJugadores = Crear_Jugadores()
+#listJugadores = Crear_Jugadores()
+#
+#juan = listJugadores[0]
+#pedro = listJugadores[1]
 
-juan = listJugadores[0]
-pedro = listJugadores[1]
-"""
 
 """
-listCartas = [
+cartsMazo = [
     {'numCarta': 5, 'simbolo': '♠'},
     {'numCarta': 3, 'simbolo': '♦'},
     {'numCarta': 11, 'simbolo': '♣'}
 ]"""
-#print(listCartas[0]['numCarta'])
+#print(cartsMazo[0]['numCarta'])
 """numCarta=5, simbolo="♣","""
 
 
-
-
-def Mostrar_Carta(listCartas):
+def Mostrar_Carta(listMisCarts):
+    """
     x = 0
-    for carta in listCartas:
+    for carta in cartsMazo:
         #x += 1
         print("╔══════╗\n║  {}   ║\n║  de  ║\n║  {}   ║\n╚══════╝".format(carta.numCarta, carta.simbolo))
+"""
     #print(x)
-    #time.sleep(5)
+    #time.sleep(
+    print("""
+        ╔══════╗     ╔══════╗    ╔══════╗   ╔══════╗    ╔══════╗
+        ║  {}   ║     ║  {}   ║    ║  {}   ║   ║  {}   ║    ║  {}   ║
+        ║  de  ║     ║  de  ║    ║  de  ║   ║  de  ║    ║  de  ║
+        ║  {}   ║     ║  {}   ║    ║  {}   ║   ║  {}   ║    ║  {}   ║
+        ╚══════╝     ╚══════╝    ╚══════╝   ╚══════╝    ╚══════╝
+         """.format(listMisCarts[0][0].numCarta, listMisCarts[0][1].numCarta, listMisCarts[0][2].numCarta, listMisCarts[0][3].numCarta, listMisCarts[0][4].numCarta, listMisCarts[0][0].simbolo, listMisCarts[0][1].simbolo, listMisCarts[0][2].simbolo, listMisCarts[0][3].simbolo, listMisCarts[0][4].simbolo) )
+    print(len(cartsMazo))
 
 
 def Mostrar_Mazo(cantdCart=5):
@@ -101,25 +110,24 @@ opcAccion = input("Indique el numero de la accion que desea realizar: ")
 """
 #if opcAccion == 1:
 
-
-#Mostrar_Carta(listCartas)
+#Mostrar_Carta(cartsMazo)
 
 
 Mostrar_Carta(listMisCarts[0])
 print('==============================')
 Mostrar_Carta(listMisCarts[1])
 print('==============================')
-print(len(listCartas))
+print(len(cartsMazo))
 print('==============================')
 print('#####################################')
 print('==============================')
-Crear_ConjuntoCarts(listCartas)
-listMisCarts = Crear_ConjuntoCarts(listCartas)
+Crear_ConjuntoCarts(cartsMazo)
+listMisCarts = Crear_ConjuntoCarts(cartsMazo)
 Mostrar_Carta(listMisCarts[0])
 print('==============================')
 Mostrar_Carta(listMisCarts[1])
 print('==============================')
-print(len(listCartas))
+print(len(cartsMazo))
 
 input()
 
