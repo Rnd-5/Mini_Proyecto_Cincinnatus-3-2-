@@ -68,12 +68,19 @@ listCartas = [
 
 
 def Mostrar_Carta(listCartas):
+    """
     x = 0
     for carta in listCartas:
         #x += 1
-        print("╔══════╗\n║  {}   ║\n║  de  ║\n║  {}   ║\n╚══════╝".format(carta.numCarta, carta.simbolo))
+        print("║{} de {}║".format(carta.numCarta, carta.simbolo))
     #print(x)
     #time.sleep(5)
+    """
+    print("║{} de {}║  ║ {} de {} ║  ║ {} de {} ║  ║ {} de {} ║  ║ {} de {} ║".format(listCartas[0].numCarta, listCartas[0].simbolo,
+                                                                                      listCartas[1].numCarta, listCartas[1].simbolo,
+                                                                                      listCartas[2].numCarta, listCartas[2].simbolo,
+                                                                                      listCartas[3].numCarta, listCartas[3].simbolo,
+                                                                                      listCartas[4].numCarta, listCartas[4].simbolo))
 
 
 def Mostrar_Mazo(cantdCart=5):
@@ -107,12 +114,15 @@ opcAccion = input("Indique el numero de la accion que desea realizar: ")
 
 Mostrar_Carta(listMisCarts[0])
 print('==============================')
+
 Mostrar_Carta(listMisCarts[1])
 print('==============================')
 print(len(listCartas))
 print('==============================')
 print('#####################################')
 print('==============================')
+
+""" 
 Crear_ConjuntoCarts(listCartas)
 listMisCarts = Crear_ConjuntoCarts(listCartas)
 Mostrar_Carta(listMisCarts[0])
@@ -120,7 +130,7 @@ print('==============================')
 Mostrar_Carta(listMisCarts[1])
 print('==============================')
 print(len(listCartas))
-
+"""
 input()
 
 
