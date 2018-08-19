@@ -1,38 +1,38 @@
 import time
 import os
-import clases
+
 from clases import *
 
 
-def Presentar_Menu():
+def Mostrar_Menu():
     print("╔═══════════════════════╗\n╠═Juego de Cartas 3 y 2═╣\n╚═══════════════════════╝")
 
-    nomJ1 = input(" ◘Introduzca el nombre del jugador 1: ")
-    nomJ2 = input(" ◘Introduzca el nombre del jugador 2: ")
-    listNom = [nomJ1, nomJ2]
-    return listNom
+    #nomJ1 = input(" ◘Introduzca el nombre del jugador 1: ")
+    #nomJ2 = input(" ◘Introduzca el nombre del jugador 2: ")
+    #listNom = [nomJ1, nomJ2]
+    #return listNom
     # return nomJ1, nomJ2
     # print(nomJ1, nomJ2)
+    return
     time.sleep(2)
 
 
 # ----ESTA FUNCION CREA EL MAZO DE CARTAS QUE SE UTILIZARA DURANTE EL JUEGO----#
 def Crear_Mazo():
     mazo_1 = Mazo()
-    return mazo_1.Generar_Mazo()
+    mazo_1.cartsMazo = mazo_1.Generar_Mazo()
+    return mazo_1
 
-
-mazoCartas = Crear_Mazo()
 
 # =============================================================================#
 
 # ----ESTA FUNCION REPARTE LAS CARTAS DE LOS JUGADORES A PARTIR DEL MAZO YA CREADO----#
-def Crear_ConjuntoCarts(mazoCartas):
-    misCartas1 = []
-    misCartas2 = []
+def Crear_ConjuntoCarts(mazoJuego):
+    misCartas1, misCartas2 = [], []
+
     while len(misCartas2) < 5:
-        misCartas1.append(mazoCartas.pop())
-        misCartas2.append(mazoCartas.pop())
+        misCartas1.append(mazoJuego.cartsMazo.pop())
+        misCartas2.append(mazoJuego.cartsMazo.pop())
     return [misCartas1, misCartas2]
 
 
@@ -43,20 +43,19 @@ def Crear_Jugadores():
     #listMisCarts = Crear_ConjuntoCarts(mazoCartas)
     nombre = input(" ◘Introduzca el nombre del jugador 1: ")
     jugador1 = Jugador(nombre, puntos=0, misCart=[])
-    nombre = input(" ◘Introduzca el nombre del jugador 1: ")
+    nombre = input(" ◘Introduzca el nombre del jugador 2: ")
     jugador2 = Jugador(nombre, puntos=0, misCart=[])
 
     return [jugador1, jugador2]
 
-
-listJugadores = Crear_Jugadores()
-
 # =============================================================================#
 
+
 def Asignar_Cartas(listJugadores):
-    listMisCarts = Crear_ConjuntoCarts(mazoCartas)
+    listMisCarts = Crear_ConjuntoCarts(mazoJuego)
     listJugadores[0].misCart = listMisCarts[0]
     listJugadores[1].misCart = listMisCarts[1]
+    mazoJuego.cantdCart = len(mazoJuego.cartsMazo)
 
 """
 juan = listJugadores[0]
@@ -73,7 +72,7 @@ listCartas = [
 """numCarta=5, simbolo="♣","""
 
 
-def Mostrar_Carta(mazoCartas):
+def Mostrar_Carta(mazoJuego):
     """
     x = 0
     for carta in listCartas:
@@ -82,24 +81,34 @@ def Mostrar_Carta(mazoCartas):
     #print(x)
     #time.sleep(5)
     """
-    print("║{} de {}║  ║ {} de {} ║  ║ {} de {} ║  ║ {} de {} ║  ║ {} de {} ║".format(mazoCartas[0].numCarta,
-                                                                                      mazoCartas[0].simbolo,
-                                                                                      mazoCartas[1].numCarta,
-                                                                                      mazoCartas[1].simbolo,
-                                                                                      mazoCartas[2].numCarta,
-                                                                                      mazoCartas[2].simbolo,
-                                                                                      mazoCartas[3].numCarta,
-                                                                                      mazoCartas[3].simbolo,
-                                                                                      mazoCartas[4].numCarta,
-                                                                                      mazoCartas[4].simbolo))
+    '''
+    print("║{} de {}║  ║{} de {}║  ║{} de {}║  ║{} de {}║  ║{} de {}║".format(mazoCartas[0].numCarta,
+                                                                              mazoCartas[0].simbolo,
+                                                                              mazoCartas[1].numCarta,
+                                                                              mazoCartas[1].simbolo,
+                                                                              mazoCartas[2].numCarta,
+                                                                              mazoCartas[2].simbolo,
+                                                                              mazoCartas[3].numCarta,
+                                                                              mazoCartas[3].simbolo,
+                                                                              mazoCartas[4].numCarta,
+                                                                              mazoCartas[4].simbolo))
+    '''
+
+    for carta in mazoJuego:
+        print("║{} de {}║".format(carta.numCarta, carta.simbolo), end="  ")
+    print("\n")
 
 
-def Mostrar_Mazo(cantdCart=5):
-    print("╔══════╗\n"
-          "║ Mazo:║\n"
+mazoJuego = Crear_Mazo()
+
+
+def Mostrar_Mazo(mazoJuego):
+    mazoJuego.cantdCart = len(mazoJuego.cartsMazo)
+    print("╔═══════╗\n"
+          "║ Mazo: ║\n"
           "║  {}   ║\n"
-          "║cartas║\n"
-          "╚══════╝".format(cantdCart))
+          "║ cartas║\n"
+          "╚═══════╝".format(len(mazoJuego.cartsMazo)))
     # time.sleep(2)
 
 
@@ -119,44 +128,33 @@ print("1-) Tomar carta del mazo.")
 print("2-) Tomar carta de la pila de cartas.")
 opcAccion = input("Indique el numero de la accion que desea realizar: ")
 """
-# if opcAccion == 1:
 
 
-# Mostrar_Carta(listCartas)
+def Presentar(listJugadores, mazoJuego):
+    for jugador in listJugadores:
+        print('[Turno del jugador: {} | Puntos: {}]'.format(jugador.nombre, jugador.puntos))
+        print('[Cartas de ' + jugador.nombre + ']:')
+        Mostrar_Carta(jugador.misCart)
+        print('==============================')
+
+    print(len(mazoJuego.cartsMazo))
+    print('#####################################')
 
 
-#listMisCarts = Crear_ConjuntoCarts(mazoCartas)
+#mazoCartas = Crear_Mazo()
 
-pedro = listJugadores[0]
-juan = listJugadores[1]
-
-#--AQUI REPARTO LAS CARTAS--#
+listJugadores = Crear_Jugadores()
+#
+#jugador1 = listJugadores[0]
+#jugador2 = listJugadores[1]
+#
 Asignar_Cartas(listJugadores)
+Presentar(listJugadores, mazoJuego)
+Mostrar_Mazo(mazoJuego)
 
-print('[-1]' + pedro.nombre + ':')
-Mostrar_Carta(pedro.misCart)
-print('==============================')
-
-print('[-1]' + juan.nombre + ':')
-Mostrar_Carta(juan.misCart)
-print('==============================')
-
-print(len(mazoCartas))
-print('#####################################')
-
-#--AQUI REPARTO LAS CARTAS NUEVAMENTE--#
 Asignar_Cartas(listJugadores)
-
-print('[-2]' + pedro.nombre + ':')
-Mostrar_Carta(pedro.misCart)
-print('==============================')
-
-print('[-2]' + juan.nombre + ':')
-Mostrar_Carta(juan.misCart)
-print('==============================')
-
-print(len(mazoCartas))
-print('#####################################')
-
+Mostrar_Mazo(mazoJuego)
+print(mazoJuego.cantdCart)
+#Mostrar_Menu()
 
 input()

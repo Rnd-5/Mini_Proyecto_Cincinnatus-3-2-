@@ -33,7 +33,11 @@ class Mazo:
         # self.listCartas = sample(self.listCartas, 52)
         # for carta in self.listCartas:
         #    print('|', carta.numCarta, carta.simbolo, '|')
-        return sample(self.cartsMazo, 52)
+
+        self.cartsMazo = sample(self.cartsMazo, 52)
+        return self.cartsMazo
+
+
 
 
 class Jugador:
