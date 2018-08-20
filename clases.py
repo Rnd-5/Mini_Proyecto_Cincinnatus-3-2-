@@ -1,8 +1,3 @@
-"""
-class Clase_1(object):
-    def __init__(self):
-        self
-"""
 from random import *
 
 
@@ -38,8 +33,6 @@ class Mazo:
         return self.cartsMazo
 
 
-
-
 class Jugador:
     cantMaxCart = 5
 
@@ -49,11 +42,14 @@ class Jugador:
         self.misCart = misCart
 
 
-"""
-class Jugador_1(Jugador):
+class PilaCartas:
+    cantdCart = 0
 
-    def __init__(self, nombre, puntos, listCart):
-"""
+    def __init__(self, cartsPila=[]):
+        self.cartsPila = cartsPila
+
+
+
 
 # mazo_1 = Mazo()
 # u = mazo_1.Generar_Mazo()
