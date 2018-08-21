@@ -65,7 +65,7 @@ def Mostrar_Menu():
     print("""
             ╔═══════════════════════╗
             ╠═Juego de Cartas 3 y 2═╣
-            ╚═══════════════════════╝\n""")
+            ╚═══════════════════════╝\n\n""")
 
     # nomJ1 = input(" ◘Introduzca el nombre del jugador 1: ")
     # nomJ2 = input(" ◘Introduzca el nombre del jugador 2: ")
@@ -112,7 +112,7 @@ def Mostrar_Mazo(mazoJuego, pilaJuego):
             ║  {}   ║          ║   de  ║
             ║cartas ║          ║   {}   ║
             ╚═══════╝          ╚═══════╝\n""".format(pilaJuego.cartsPila[-1].numCarta, len(mazoJuego.cartsMazo),
-                                                pilaJuego.cartsPila[-1].simbolo))
+                                                     pilaJuego.cartsPila[-1].simbolo))
     # time.sleep(2)
 
 
@@ -129,39 +129,10 @@ def Mostrar_Turno(listJugadores, mazoJuego, turno):
 
     jugador = listJugadores[turno]
     print(' •Turno del jugador: {} | Puntos: {}'.format(jugador.nombre, jugador.puntos))
-    print(' •Cartas de ' + jugador.nombre + ': \n')
+    print('\n •Cartas de ' + jugador.nombre + ': -→', end="")
     Mostrar_Carta(jugador.misCart)
-    #print('==============================')
 
-# =============================================================================#
-
-#
-# jugador1 = listJugadores[0]
-# jugador2 = listJugadores[1]
-#
-
-
-def Start():
-    turno = 0
-
-    Mostrar_Menu()
-
-    mazoJuego = Crear_Mazo()
-    listJugadores = Crear_Jugadores()
-    pilaJuego = Crear_PilaCart(mazoJuego)
-
-    Crear_ConjuntoCarts(mazoJuego, listJugadores)
-    os.system('cls')
-    # Asignar_Cartas(listJugadores)
-    while mazoJuego.cantdCart > 0:
-
-        Mostrar_Menu()
-        Mostrar_Turno(listJugadores, mazoJuego, turno)
-        Mostrar_Mazo(mazoJuego, pilaJuego)
-        input()
-        Menu(mazoJuego, pilaJuego, listJugadores, turno)
-
-# opcion = -3
+    # print('==============================')
 
 
 def Menu(mazoJuego, pilaJuego, listJugadores, turno):
@@ -185,6 +156,7 @@ def Menu(mazoJuego, pilaJuego, listJugadores, turno):
                 if carta.numCarta == subDesc:
                     listJugadores[turno].misCart.remove(carta)
                     pilaJuego.cartsPila.append(carta)
+                    break
                     # AGREGAR UNA CONFIRMACION QUE VERIFIQUE SI SE CUENTA CON EL NUM DE CARTA INTRODUCIDO
             listJugadores[turno].misCart.append(cart_Selecc)
         else:
@@ -199,12 +171,71 @@ def Menu(mazoJuego, pilaJuego, listJugadores, turno):
                 # AGREGAR UNA CONFIRMACION QUE VERIFIQUE SI SE CUENTA CON EL NUM DE CARTA INTRODUCIDO
         listJugadores[turno].misCart.append(cart_Selecc)
     else:
+        os.system('cls')
         print(" ###-Error opcion no valida-###")
+        input()
+        os.system('cls')
+        Mostrar_Menu()
+        Mostrar_Turno(listJugadores, mazoJuego, turno)
+        Mostrar_Mazo(mazoJuego, pilaJuego)
         Menu(mazoJuego, pilaJuego, listJugadores, turno)
-        #os.system('cls')
+        # os.system('cls')
+
+
+# =============================================================================#
+
+
+def Start():
+    turno = 0
+
+    Mostrar_Menu()
+
+    mazoJuego = Crear_Mazo()
+    listJugadores = Crear_Jugadores()
+    pilaJuego = Crear_PilaCart(mazoJuego)
+
+    Crear_ConjuntoCarts(mazoJuego, listJugadores)
+
+    # Asignar_Cartas(listJugadores)
+    while mazoJuego.cantdCart > 0:
+        os.system('cls')
+        Mostrar_Menu()
+        Mostrar_Turno(listJugadores, mazoJuego, turno)
+        Mostrar_Mazo(mazoJuego, pilaJuego)
+        input()
+        Menu(mazoJuego, pilaJuego, listJugadores, turno)
+        # -------------------------------------------
+        Comprobar_Punto(listJugadores, turno, mazoJuego)
+
+        input()
+        # -------------------------------------------
+        if turno == 0:
+            turno = 1
+        else:
+            turno = 0
+
+
+def Comprobar_Punto(listJugadores, turno, mazoJuego):
+    jugador = listJugadores[turno]
+    listCartas = []
+
+    for element in jugador.misCart:
+        listCartas.append(element.numCarta)
+
+    select = listCartas[0]
+
+    if 1 < listCartas.count(select) < 4:
+        for carta in listCartas[1:]:
+            if carta != select:
+                if (listCartas.count(carta) == 2 and listCartas.count(select) == 3) or (listCartas.count(carta) == 3 and listCartas.count(select) == 2):
+                    jugador.puntos += 1
+                    os.system('cls')
+                    print(" ###-{} ha ganado un punto-###".format(jugador.nombre))
+                    input()
+                    os.system('cls')
+                    Crear_ConjuntoCarts(mazoJuego, listJugadores)
+                    break
+                break
 
 
 Start()
-
-
-
