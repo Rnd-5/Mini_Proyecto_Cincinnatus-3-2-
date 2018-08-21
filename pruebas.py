@@ -27,9 +27,6 @@ def Comprobar_Punto():
 
 Comprobar_Punto()
 """
-listJugadores = [
-    juan = Jugador('juan', 0, [])
-]
 
 def Comprobar_Punto(listJugadores, turno):
     jugador = listJugadores[turno]
@@ -51,3 +48,4 @@ def Comprobar_Punto(listJugadores, turno):
     else:
         valido = False
         # print(valido)
+""""""

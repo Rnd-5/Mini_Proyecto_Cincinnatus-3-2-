@@ -47,11 +47,3 @@ class PilaCartas:
 
     def __init__(self, cartsPila=[]):
         self.cartsPila = cartsPila
-
-
-
-
-# mazo_1 = Mazo()
-# u = mazo_1.Generar_Mazo()
-# print(u[51].numCarta, u[50].simbolo)
-# print(len(u))
