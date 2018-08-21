@@ -1,12 +1,13 @@
 from funciones import *
 
 
-def Start():
-    turno = 0
+def Iniciar():
 
+    Mostrar_Reglas()
     Mostrar_Menu()
     time.sleep(2)
 
+    turno = 0
     mazoJuego = Crear_Mazo()
     listJugadores = Crear_Jugadores()
     pilaJuego = Crear_PilaCart(mazoJuego)
@@ -41,6 +42,7 @@ def Start():
         print("""
                         ◘Empate☻ ☺ ☻ ☺!!!
                       Obtuvieron {} puntos.""".format(listJugadores[1].puntos))
+    input()
 
 
-Start()
+Iniciar()

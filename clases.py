@@ -1,4 +1,4 @@
-from random import *
+from random import sample
 
 
 class Carta:
@@ -14,7 +14,6 @@ class Mazo:
     listSimbl = ['♥', '♦', '♣', '♠']
 
     def __init__(self, cartsMazo=[]):
-        # self.ordeCart = ordeCart
         self.cartsMazo = cartsMazo
 
     def Generar_Mazo(self):

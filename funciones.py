@@ -28,15 +28,17 @@ def Crear_Jugadores():
 
 # ----ESTA FUNCION REPARTE LAS CARTAS DE LOS JUGADORES A PARTIR DEL MAZO YA CREADO----#
 def Crear_ConjuntoCarts(mazoJuego, listJugadores):
-    misCartas1, misCartas2 = [], []
+    if mazoJuego.cantdCart > 9:
+        misCartas1, misCartas2 = [], []
 
-    while len(misCartas2) < 5:
-        if mazoJuego.cantdCart > 0:
-            misCartas1.append(mazoJuego.cartsMazo.pop())
-            misCartas2.append(mazoJuego.cartsMazo.pop())
-    listJugadores[0].misCart = misCartas1
-    listJugadores[1].misCart = misCartas2
-    mazoJuego.cantdCart = len(mazoJuego.cartsMazo)
+        while len(misCartas2) < 5:
+                misCartas1.append(mazoJuego.cartsMazo.pop())
+                misCartas2.append(mazoJuego.cartsMazo.pop())
+        listJugadores[0].misCart = misCartas1
+        listJugadores[1].misCart = misCartas2
+        mazoJuego.cantdCart = len(mazoJuego.cartsMazo)
+    else:
+        mazoJuego.cantdCart = 0
 
 """
 def Asignar_Cartas(listJugadores):
@@ -59,7 +61,24 @@ def Crear_PilaCart(mazoJuego):
 # =============================================================================#
 
 
+
 # =======================FUNCIONES_DE_PRESENTACION=============================#
+def Mostrar_Reglas():
+    print("""
+    ╔════════════════════════════════════════════════════════════════════════════════════╗
+    ╠═-------------------------Este es el juego de Cartas 3 y 2-------------------------═╣
+    ╠════════════════════════════════════════════════════════════════════════════════════╣
+    ║ 1-]Consta de dos jugadores a los cuales se le reparten 5 cartas(a cada jugador).   ║
+    ║                                                                                    ║
+    ║ 2-]Un jugador ganará un punto cuando logre tener a mano 3 cartas con el mismo      ║
+    ║    valor numérico y 2 cartas con otro valor numerico(mismos).                      ║
+    ║    Ejemplo: tres cartas con el #6 y dos cartas con el #11.                         ║
+    ║                                                                                    ║
+    ║ 3-]El juego terminará hasta que no queden mas cartas en el mazo, y ganará el       ║
+    ║    jugador con mayor puntos acumulados.                                            ║
+    ╚════════════════════════════════════════════════════════════════════════════════════╝""")
+    input("     → Presisone la tecla [ENTER] para continuar.")
+    os.system('cls')
 
 
 def Mostrar_Menu():
@@ -70,26 +89,6 @@ def Mostrar_Menu():
 
 
 def Mostrar_Carta(listCartas):
-    """
-    x = 0
-    for carta in listCartas:
-        #x += 1
-        print("║{} de {}║".format(carta.numCarta, carta.simbolo))
-    #print(x)
-    #time.sleep(5)
-    """
-    '''
-    print("║{} de {}║  ║{} de {}║  ║{} de {}║  ║{} de {}║  ║{} de {}║".format(mazoCartas[0].numCarta,
-                                                                              mazoCartas[0].simbolo,
-                                                                              mazoCartas[1].numCarta,
-                                                                              mazoCartas[1].simbolo,
-                                                                              mazoCartas[2].numCarta,
-                                                                              mazoCartas[2].simbolo,
-                                                                              mazoCartas[3].numCarta,
-                                                                              mazoCartas[3].simbolo,
-                                                                              mazoCartas[4].numCarta,
-                                                                              mazoCartas[4].simbolo))
-    '''
 
     for carta in listCartas:
         print("     ║{} de {}║".format(carta.numCarta, carta.simbolo), end="")
@@ -108,15 +107,6 @@ def Mostrar_Mazo(mazoJuego, pilaJuego):
 
 
 def Mostrar_Turno(listJugadores, turno):
-    """
-    for jugador in listJugadores:
-        print('[Turno del jugador: {} | Puntos: {}]'.format(jugador.nombre, jugador.puntos))
-        print('[Cartas de ' + jugador.nombre + ']:')
-        Mostrar_Carta(jugador.misCart)
-        print('==============================')
-    print(len(mazoJuego.cartsMazo))
-    print('#####################################')
-    """
 
     jugador = listJugadores[turno]
     print(' •Turno del jugador: {} | Puntos: {}'.format(jugador.nombre, jugador.puntos))
