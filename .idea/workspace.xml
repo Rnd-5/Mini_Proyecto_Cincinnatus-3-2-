@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8af7a0b6-aace-4ea5-be9d-07bba6367657" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/funciones.py" beforeDir="false" afterPath="$PROJECT_DIR$/funciones.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruebas.py" beforeDir="false" afterPath="$PROJECT_DIR$/pruebas.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,8 +31,8 @@
       <file leaf-file-name="funciones.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/funciones.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="71">
-              <caret line="178" column="49" lean-forward="true" selection-start-line="178" selection-start-column="49" selection-end-line="178" selection-end-column="49" />
+            <state relative-caret-position="386">
+              <caret line="170" column="34" selection-start-line="170" selection-start-column="34" selection-end-line="170" selection-end-column="34" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
                 <element signature="e#1261#1498#1" />
@@ -44,7 +44,25 @@
                 <element signature="e#3540#3968#0" />
                 <element signature="e#4016#4603#0" />
                 <element signature="e#4670#4862#0" />
+                <element signature="e#5447#6766#0" />
+                <element signature="e#7888#8189#0" />
+                <element signature="e#7916#8189#0" />
                 <element signature="e#6615#7437#0" />
+                <element signature="e#6825#7437#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pruebas.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pruebas.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="55" column="20" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="20" />
+              <folding>
+                <element signature="e#21#43#0" />
+                <element signature="e#137#716#1" />
+                <element signature="e#765#1465#0" />
               </folding>
             </state>
           </provider>
@@ -75,10 +93,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/../fresh_tomatoes.py" />
-        <option value="$PROJECT_DIR$/pruebas.py" />
         <option value="$PROJECT_DIR$/menu.py" />
         <option value="$PROJECT_DIR$/clases.py" />
         <option value="$PROJECT_DIR$/Game.py" />
+        <option value="$PROJECT_DIR$/pruebas.py" />
         <option value="$PROJECT_DIR$/funciones.py" />
       </list>
     </option>
@@ -126,7 +144,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Game">
+  <component name="RunManager" selected="Python.pruebas">
     <configuration name="Game" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Proyecto_Cartas(3y2)" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -226,9 +244,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pruebas" />
         <item itemvalue="Python.Game" />
         <item itemvalue="Python.menu" />
-        <item itemvalue="Python.pruebas" />
         <item itemvalue="Python.clases" />
         <item itemvalue="Python.fresh_tomatoes" />
       </list>
@@ -298,7 +316,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="7" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -665,13 +683,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../fresh_tomatoes.py" />
-    <entry file="file://$PROJECT_DIR$/pruebas.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-220">
-          <caret line="28" column="3" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Game.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="327">
@@ -691,10 +702,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pruebas.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="55" column="20" selection-start-line="55" selection-start-column="20" selection-end-line="55" selection-end-column="20" />
+          <folding>
+            <element signature="e#21#43#0" />
+            <element signature="e#137#716#1" />
+            <element signature="e#765#1465#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/funciones.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="178" column="49" lean-forward="true" selection-start-line="178" selection-start-column="49" selection-end-line="178" selection-end-column="49" />
+        <state relative-caret-position="386">
+          <caret line="170" column="34" selection-start-line="170" selection-start-column="34" selection-end-line="170" selection-end-column="34" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
             <element signature="e#1261#1498#1" />
@@ -706,7 +729,11 @@
             <element signature="e#3540#3968#0" />
             <element signature="e#4016#4603#0" />
             <element signature="e#4670#4862#0" />
+            <element signature="e#5447#6766#0" />
+            <element signature="e#7888#8189#0" />
+            <element signature="e#7916#8189#0" />
             <element signature="e#6615#7437#0" />
+            <element signature="e#6825#7437#0" />
           </folding>
         </state>
       </provider>

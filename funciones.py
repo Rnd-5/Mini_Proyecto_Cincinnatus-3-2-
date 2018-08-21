@@ -131,25 +131,61 @@ def Menu(mazoJuego, pilaJuego, listJugadores, turno):
  ║2-]Tomar la carta boca arriba(de la pila).║
  ╚══════════════════════════════════════════╝\n""")
 
-    opcion = int(input(" ◘Que acción desea realizar? "))
+    opcion = input(" ◘Que acción desea realizar? ")
 
-    if opcion == 1:
-        if mazoJuego.cantdCart > 0:
-            cart_Selecc = mazoJuego.cartsMazo.pop()
-            time.sleep(1)
-            print("     →Carta seleccionada: ║{} de {}║".format(cart_Selecc.numCarta, cart_Selecc.simbolo))
+    if opcion.isdigit():
+        opcion = int(opcion)
 
-            desc = input(" •Deseas conservar esta carta (S/N)?: ").upper()
-            if desc == 'S':
+        if opcion == 1:
+            if mazoJuego.cantdCart > 0:
+                cart_Selecc = mazoJuego.cartsMazo.pop()
+                time.sleep(1)
+                print("     →Carta seleccionada: ║{} de {}║".format(cart_Selecc.numCarta, cart_Selecc.simbolo))
                 while True:
-                    subDesc = int(input(" •Cuál de tus cartas deseas tirar? :"))
+                    desc = input(" •Deseas conservar esta carta (S/N)?: ").upper()
+                    if desc == 'S':
+                        while True:
+                            subDesc = input(" •Cuál de tus cartas deseas tirar? :")
+                            if subDesc.isdigit():
+                                subDesc = int(subDesc)
+                                # AGREGAR UNA CONFIRMACION QUE VERIFIQUE SI SE CUENTA CON EL NUM DE CARTA INTRODUCIDO
+                                listElemt = []
+                                for elemt in listJugadores[turno].misCart:
+                                    listElemt.append(elemt.numCarta)
+
+                                if subDesc in listElemt:
+
+                                    for carta in listJugadores[turno].misCart:
+                                        if carta.numCarta == subDesc:
+                                            listJugadores[turno].misCart.remove(carta)
+                                            pilaJuego.cartsPila.append(carta)
+                                            break
+                                    listJugadores[turno].misCart.append(cart_Selecc)
+                                    break
+                                print(" ##-No cuentas con la carta que has indicado-##")
+                                input("    →Presiona [ENTER] para continuar")
+                            else:
+                                print(" ##-Debes introducir el numero de unas de tus cartas-##")
+                                input("    →Presiona [ENTER] para continuar")
+                        break
+                    elif desc == 'N':
+                        pilaJuego.cartsPila.append(cart_Selecc)
+                        break
+            else:
+                print("     →Ya no quedan cartas en el mazo.")
+        elif opcion == 2:
+            cart_Selecc = pilaJuego.cartsPila.pop()
+
+            while True:
+                subDesc = input(" •Cuál de tus cartas deseas tirar? :")
+                if subDesc.isdigit():
+                    subDesc = int(subDesc)
                     # AGREGAR UNA CONFIRMACION QUE VERIFIQUE SI SE CUENTA CON EL NUM DE CARTA INTRODUCIDO
                     listElemt = []
                     for elemt in listJugadores[turno].misCart:
                         listElemt.append(elemt.numCarta)
 
                     if subDesc in listElemt:
-
                         for carta in listJugadores[turno].misCart:
                             if carta.numCarta == subDesc:
                                 listJugadores[turno].misCart.remove(carta)
@@ -159,33 +195,18 @@ def Menu(mazoJuego, pilaJuego, listJugadores, turno):
                         break
                     print(" ##-No cuentas con la carta que has indicado-##")
                     input("    →Presiona [ENTER] para continuar")
-
-            else:
-                pilaJuego.cartsPila.append(cart_Selecc)
+                else:
+                    print(" ##-Debes introducir el numero de unas de tus cartas-##")
+                    input("    →Presiona [ENTER] para continuar")
         else:
-            print("     →Ya no quedan cartas en el mazo.")
-    elif opcion == 2:
-        cart_Selecc = pilaJuego.cartsPila.pop()
-
-        while True:
-            subDesc = int(input(" •Cuál de tus cartas deseas tirar? :"))
-            # AGREGAR UNA CONFIRMACION QUE VERIFIQUE SI SE CUENTA CON EL NUM DE CARTA INTRODUCIDO
-            listElemt = []
-            for elemt in listJugadores[turno].misCart:
-                listElemt.append(elemt.numCarta)
-
-            if subDesc in listElemt:
-                for carta in listJugadores[turno].misCart:
-                    if carta.numCarta == subDesc:
-                        listJugadores[turno].misCart.remove(carta)
-                        pilaJuego.cartsPila.append(carta)
-                        break
-                listJugadores[turno].misCart.append(cart_Selecc)
-                break
-            print(" ##-No cuentas con la carta que has indicado-##")
-            input("    →Presiona [ENTER] para continuar")
-
-
+            os.system('cls')
+            print(" ###-Error opcion no valida-###")
+            input()
+            os.system('cls')
+            Mostrar_Menu()
+            Mostrar_Turno(listJugadores, turno)
+            Mostrar_Mazo(mazoJuego, pilaJuego)
+            Menu(mazoJuego, pilaJuego, listJugadores, turno)
     else:
         os.system('cls')
         print(" ###-Error opcion no valida-###")

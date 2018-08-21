@@ -49,3 +49,11 @@ def Comprobar_Punto(listJugadores, turno):
         valido = False
         # print(valido)
 """"""
+
+k = input("Ent: ")
+
+if k.isdigit():
+    print(int(k) / 2)
+    print(True)
+elif type(k) != int:
+    print(False)
