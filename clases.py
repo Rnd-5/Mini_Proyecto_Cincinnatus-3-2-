@@ -18,21 +18,22 @@ class Mazo:
     cantdCart = 52
     listSimbl = ['♥', '♦', '♣', '♠']
 
-    def __init__(self, cartsMazo=[]):
+    def __init__(self, listCartas=[]):
         # self.ordeCart = ordeCart
-        self.cartsMazo = cartsMazo
+        self.listCartas = listCartas
 
     def Generar_Mazo(self):
+
         for simbolo in self.listSimbl:
             for cnt in range(1, 14):
                 carta = Carta(cnt, simbolo)
                 # ('|', carta.numCarta, carta.simbolo, '|')
-                self.cartsMazo.append(carta)
+                self.listCartas.append(carta)
         # print('===========================')
         # self.listCartas = sample(self.listCartas, 52)
         # for carta in self.listCartas:
         #    print('|', carta.numCarta, carta.simbolo, '|')
-        return sample(self.cartsMazo, 52)
+        return sample(self.listCartas, 52)
 
 
 class Jugador:
