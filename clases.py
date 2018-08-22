@@ -1,9 +1,4 @@
-"""
-class Clase_1(object):
-    def __init__(self):
-        self
-"""
-from random import *
+from random import sample
 
 
 class Carta:
@@ -18,9 +13,8 @@ class Mazo:
     cantdCart = 52
     listSimbl = ['♥', '♦', '♣', '♠']
 
-    def __init__(self, listCartas=[]):
-        # self.ordeCart = ordeCart
-        self.listCartas = listCartas
+    def __init__(self, cartsMazo=[]):
+        self.cartsMazo = cartsMazo
 
     def Generar_Mazo(self):
 
@@ -28,12 +22,14 @@ class Mazo:
             for cnt in range(1, 14):
                 carta = Carta(cnt, simbolo)
                 # ('|', carta.numCarta, carta.simbolo, '|')
-                self.listCartas.append(carta)
+                self.cartsMazo.append(carta)
         # print('===========================')
         # self.listCartas = sample(self.listCartas, 52)
         # for carta in self.listCartas:
         #    print('|', carta.numCarta, carta.simbolo, '|')
-        return sample(self.listCartas, 52)
+
+        self.cartsMazo = sample(self.cartsMazo, 52)
+        return self.cartsMazo
 
 
 class Jugador:
@@ -45,13 +41,8 @@ class Jugador:
         self.misCart = misCart
 
 
-"""
-class Jugador_1(Jugador):
+class PilaCartas:
+    cantdCart = 0
 
-    def __init__(self, nombre, puntos, listCart):
-"""
-
-# mazo_1 = Mazo()
-# u = mazo_1.Generar_Mazo()
-# print(u[51].numCarta, u[50].simbolo)
-# print(len(u))
+    def __init__(self, cartsPila=[]):
+        self.cartsPila = cartsPila
