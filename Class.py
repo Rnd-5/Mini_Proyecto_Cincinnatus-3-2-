@@ -39,9 +39,3 @@ class StackCards:
 
     def __init__(self, cardsStack=[]):
         self.cardsStack = cardsStack
-
-
-'''
-class Game:
-
-'''

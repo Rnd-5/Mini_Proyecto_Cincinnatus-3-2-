@@ -1,47 +1,56 @@
 from Functions import *
 
+class Game:
+    def __init__(self):
+        self.turn = 0
+        self.gameDeck = create_deck()
+        self.listPlayers = []
+        self.gameStack = create_stack_card(self.gameDeck)
 
-def Start():
-
-    display_rules()
-    display_menu()
-    time.sleep(2)
-
-    turn = 0
-    gameDeck = create_deck()
-    listPlayers = create_player()
-    gameStack = create_stack_card(gameDeck)
-
-    create_set_cards(gameDeck, listPlayers)
-
-    while gameDeck.cardsQuantity > 0:
-        os.system('cls')
+    def Start(self):
         display_rules()
-        display_turn(listPlayers, turn)
-        display_deck(gameDeck, gameStack)
-        Menu(gameDeck, gameStack, listPlayers, turn)
-        check_point(listPlayers, turn, gameDeck)
+        display_menu()
+        time.sleep(2)
 
-        if turn == 0:
-            turn = 1
+        # turn = 0
+        # gameDeck = create_deck()
+        # listPlayers = create_player()
+        # gameStack = create_stack_card(gameDeck)
+        self.listPlayers = create_player()
+
+        create_set_cards(self.gameDeck, self.listPlayers)
+
+        while self.gameDeck.cardsQuantity > 0:
+            os.system('cls')
+            display_menu()
+            display_turn(self.listPlayers, self.turn)
+            display_deck(self.gameDeck, self.gameStack)
+            Menu(self.gameDeck, self.gameStack, self.listPlayers, self.turn)
+            check_point(self.listPlayers, self.turn, self.gameDeck)
+            if self.turn == 0:
+                self.turn = 1
+            else:
+                self.turn = 0
+        self.check_winner()
+
+    def check_winner(self):
+        os.system('cls')
+        print("###--Game Over--###")
+        if self.listPlayers[0].points > self.listPlayers[1].points:
+            print("""
+                    ◘El ganador es {} ☻ ☺ ☻ ☺!!!
+                        Obtuviste {} puntos.""".format(self.listPlayers[0].name, self.listPlayers[0].points))
+        elif self.listPlayers[1].points > self.listPlayers[0].points:
+            print("""
+                            ◘El ganador es {} ☻ ☺ ☻ ☺!!!
+                                Obtuviste {} puntos.""".format(self.listPlayers[1].name, self.listPlayers[1].points))
         else:
-            turn = 0
-
-    os.system('cls')
-    print("###--Game Over--###")
-    if listPlayers[0].points > listPlayers[1].points:
-        print("""
-        ◘El ganador es {} ☻ ☺ ☻ ☺!!!
-            Obtuviste {} puntos.""".format(listPlayers[0].name, listPlayers[0].points))
-    elif listPlayers[1].points > listPlayers[0].points:
-        print("""
-                ◘El ganador es {} ☻ ☺ ☻ ☺!!!
-                    Obtuviste {} puntos.""".format(listPlayers[1].name, listPlayers[1].points))
-    else:
-        print("""
-                        ◘Empate☻ ☺ ☻ ☺!!!
-                      Obtuvieron {} puntos.""".format(listPlayers[1].points))
-    input()
+            print("""
+                                    ◘Empate☻ ☺ ☻ ☺!!!
+                                  Obtuvieron {} puntos.""".format(self.listPlayers[1].points))
+        input()
 
 
-Start()
+game = Game()
+
+game.Start()

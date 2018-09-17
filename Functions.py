@@ -32,10 +32,10 @@ def create_set_cards(gameDeck, listPlayers):
         myCards1, myCards2 = [], []
 
         while len(myCards2) < 5:
-                myCards1.append(gameDeck.deckCards.pop())
-                myCards2.append(gameDeck.deckCards.pop())
-        listPlayers[0].misCart = myCards1
-        listPlayers[1].misCart = myCards2
+            myCards1.append(gameDeck.deckCards.pop())
+            myCards2.append(gameDeck.deckCards.pop())
+        listPlayers[0].myCards = myCards1
+        listPlayers[1].myCards = myCards2
         gameDeck.cardsQuantity = len(gameDeck.deckCards)
     else:
         gameDeck.cardsQuantity = 0
@@ -141,7 +141,7 @@ def Menu(gameDeck, gameStack, listPlayers, turn):
                                             listPlayers[turn].myCards.remove(card)
                                             gameStack.cardsStack.append(card)
                                             break
-                                    listPlayers[turn].myCard.append(cardSelected)
+                                    listPlayers[turn].myCards.append(cardSelected)
                                     break
                                 print(" ##-No cuentas con la carta que has indicado-##")
                                 input("    →Presiona [ENTER] para continuar")
@@ -161,18 +161,17 @@ def Menu(gameDeck, gameStack, listPlayers, turn):
                 subDesc = input(" •Cuál de tus cartas deseas tirar? :")
                 if subDesc.isdigit():
                     subDesc = int(subDesc)
-                    # AGREGAR UNA CONFIRMACION QUE VERIFIQUE SI SE CUENTA CON EL NUM DE CARTA INTRODUCIDO
                     listElemts = []
                     for elemt in listPlayers[turn].myCards:
                         listElemts.append(elemt.numCard)
 
                     if subDesc in listElemts:
-                        for card in listPlayers[turn].misCart:
-                            if card.numCarta == subDesc:
-                                listPlayers[turn].myCard.remove(card)
+                        for card in listPlayers[turn].myCards:
+                            if card.numCard == subDesc:
+                                listPlayers[turn].myCards.remove(card)
                                 gameStack.cardsStack.append(card)
                                 break
-                        listPlayers[turn].myCard.append(cardSelected)
+                        listPlayers[turn].myCards.append(cardSelected)
                         break
                     print(" ##-No cuentas con la carta que has indicado-##")
                     input("    →Presiona [ENTER] para continuar")
@@ -204,7 +203,7 @@ def check_point(listPlayers, turn, gameDeck):
     listCards = []
 
     for element in player.myCards:
-        listCards.append(element.numCarta)
+        listCards.append(element.numCard)
 
     selected = listCards[0]
 
@@ -213,7 +212,7 @@ def check_point(listPlayers, turn, gameDeck):
             if card != selected:
                 if (listCards.count(card) == 2 and listCards.count(selected) == 3) or (
                         listCards.count(card) == 3 and listCards.count(selected) == 2):
-                    player.puntos += 1
+                    player.points += 1
                     os.system('cls')
                     print(" ###-{} ha ganado un punto-###".format(player.name))
                     time.sleep(2)
