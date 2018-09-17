@@ -11,13 +11,7 @@ class Game:
         display_rules()
         display_menu()
         time.sleep(2)
-
-        # turn = 0
-        # gameDeck = create_deck()
-        # listPlayers = create_player()
-        # gameStack = create_stack_card(gameDeck)
         self.listPlayers = create_player()
-
         create_set_cards(self.gameDeck, self.listPlayers)
 
         while self.gameDeck.cardsQuantity > 0:

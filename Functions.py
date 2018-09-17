@@ -16,9 +16,9 @@ def create_deck():
 
 # ----ESTA FUNCION INSTANCIA A LOS JUAGADORES----#
 def create_player():
-    name = input(" ◘Introduzca el nombre del jugador 1: ")
+    name = input(" ◘Introduzca el nombre del jugador 1 y presione la tecla [ENTER]: ")
     player1 = Player(name, points=0, myCards=[])
-    name = input(" ◘Introduzca el nombre del jugador 2: ")
+    name = input(" ◘Introduzca el nombre del jugador 2 y presione la tecla [ENTER]: ")
     player2 = Player(name, points=0, myCards=[])
 
     return [player1, player2]
@@ -217,7 +217,7 @@ def check_point(listPlayers, turn, gameDeck):
                     print(" ###-{} ha ganado un punto-###".format(player.name))
                     time.sleep(2)
                     os.system('cls')
-                    create_set_cards(gameDeck, listCards)
+                    create_set_cards(gameDeck, listPlayers)
                     break
                 break
 
