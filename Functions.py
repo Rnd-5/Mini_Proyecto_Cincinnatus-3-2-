@@ -1,69 +1,61 @@
 import os
 import time
-from clases import *
+from Class import *
 
 
 # =========================FUNCIONES_DE_CREACION===============================#
 
 # ----ESTA FUNCION CREA EL MAZO DE CARTAS QUE SE UTILIZARA DURANTE EL JUEGO----#
-def Crear_Mazo():
-    mazo_1 = Mazo()
-    mazo_1.cartsMazo = mazo_1.Generar_Mazo()
-    return mazo_1
+def create_deck():
+    deck_1 = Deck()
+    deck_1.deckCards = deck_1.generate_deck()
+    return deck_1
 
 # =============================================================================#
 
 
 # ----ESTA FUNCION INSTANCIA A LOS JUAGADORES----#
-def Crear_Jugadores():
-    nombre = input(" ◘Introduzca el nombre del jugador 1: ")
-    jugador1 = Jugador(nombre, puntos=0, misCart=[])
-    nombre = input(" ◘Introduzca el nombre del jugador 2: ")
-    jugador2 = Jugador(nombre, puntos=0, misCart=[])
+def create_player():
+    name = input(" ◘Introduzca el nombre del jugador 1: ")
+    player1 = Player(name, points=0, myCards=[])
+    name = input(" ◘Introduzca el nombre del jugador 2: ")
+    player2 = Player(name, points=0, myCards=[])
 
-    return [jugador1, jugador2]
+    return [player1, player2]
 
 # =============================================================================#
 
 
 # ----ESTA FUNCION REPARTE LAS CARTAS DE LOS JUGADORES A PARTIR DEL MAZO YA CREADO----#
-def Crear_ConjuntoCarts(mazoJuego, listJugadores):
-    if mazoJuego.cantdCart > 9:
-        misCartas1, misCartas2 = [], []
+def create_set_cards(gameDeck, listPlayers):
+    if gameDeck.cardsQuantity > 9:
+        myCards1, myCards2 = [], []
 
-        while len(misCartas2) < 5:
-                misCartas1.append(mazoJuego.cartsMazo.pop())
-                misCartas2.append(mazoJuego.cartsMazo.pop())
-        listJugadores[0].misCart = misCartas1
-        listJugadores[1].misCart = misCartas2
-        mazoJuego.cantdCart = len(mazoJuego.cartsMazo)
+        while len(myCards2) < 5:
+                myCards1.append(gameDeck.deckCards.pop())
+                myCards2.append(gameDeck.deckCards.pop())
+        listPlayers[0].misCart = myCards1
+        listPlayers[1].misCart = myCards2
+        gameDeck.cardsQuantity = len(gameDeck.deckCards)
     else:
-        mazoJuego.cantdCart = 0
-
-"""
-def Asignar_Cartas(listJugadores):
-    listMisCarts = Crear_ConjuntoCarts(mazoJuego)
-    listJugadores[0].misCart = listMisCarts[0]
-    listJugadores[1].misCart = listMisCarts[1]
-    mazoJuego.cantdCart = len(mazoJuego.cartsMazo)
-"""
+        gameDeck.cardsQuantity = 0
 
 # =============================================================================#
 
 
 # ----ESTA FUNCION INSTANCIA UNA PILA DE CARTAS----#
-def Crear_PilaCart(mazoJuego):
-    pila_1 = PilaCartas()
-    pila_1.cartsPila.append(mazoJuego.cartsMazo.pop())
-    pila_1.cantdCart = len(pila_1.cartsPila)
-    return pila_1
+def create_stack_card(gameDeck):
+    stack_1 = StackCards()
+    stack_1.cardsStack.append(gameDeck.deckCards.pop())
+    stack_1.cardsQuantity = len(stack_1.cardsStack)
+    return stack_1
 
 # =============================================================================#
 
 
 
 # =======================FUNCIONES_DE_PRESENTACION=============================#
-def Mostrar_Reglas():
+def display_rules():
     print("""
     ╔════════════════════════════════════════════════════════════════════════════════════╗
     ╠═-------------------------Este es el juego de Cartas 3 y 2-------------------------═╣
@@ -81,56 +73,56 @@ def Mostrar_Reglas():
     os.system('cls')
 
 
-def Mostrar_Menu():
+def display_menu():
     print("""
             ╔═══════════════════════╗
             ╠═Juego de Cartas 3 y 2═╣
             ╚═══════════════════════╝\n\n""")
 
 
-def Mostrar_Carta(listCartas):
+def display_card(listCards):
 
-    for carta in listCartas:
-        print("     ║{} de {}║".format(carta.numCarta, carta.simbolo), end="")
+    for card in listCards:
+        print("     ║{} de {}║".format(card.numCard, card.symbol), end="")
     print("\n")
 
 
-def Mostrar_Mazo(mazoJuego, pilaJuego):
-    mazoJuego.cantdCart = len(mazoJuego.cartsMazo)
+def display_deck(gameDeck, gameStack):
+    gameDeck.cardsQuantity = len(gameDeck.deckCards)
     print("""  
             ╔═══════╗          ╔═══════╗
             ║ Mazo: ║          ║   {}   ║
             ║  {}   ║          ║   de  ║
             ║cartas ║          ║   {}   ║
-            ╚═══════╝          ╚═══════╝\n""".format(pilaJuego.cartsPila[-1].numCarta, len(mazoJuego.cartsMazo),
-                                                     pilaJuego.cartsPila[-1].simbolo))
+            ╚═══════╝          ╚═══════╝\n""".format(gameStack.cardsStack[-1].numCard, len(gameDeck.deckCards),
+                                                     gameStack.cardsStack[-1].symbol))
 
 
-def Mostrar_Turno(listJugadores, turno):
+def display_turn(listPlayers, turn):
 
-    jugador = listJugadores[turno]
-    print(' •Turno del jugador: {} | Puntos: {}'.format(jugador.nombre, jugador.puntos))
-    print('\n •Cartas de ' + jugador.nombre + ': -→', end="")
-    Mostrar_Carta(jugador.misCart)
+    player = listPlayers[turn]
+    print(' •Turno del jugador: {} | Puntos: {}'.format(player.name, player.points))
+    print('\n •Cartas de ' + player.name + ': -→', end="")
+    display_card(player.myCards)
 
 
-def Menu(mazoJuego, pilaJuego, listJugadores, turno):
+def Menu(gameDeck, gameStack, listPlayers, turn):
     print("""
  ╔══════════════════════════════════════════╗
  ║1-]Tomar una carta del mazo.              ║
  ║2-]Tomar la carta boca arriba(de la pila).║
  ╚══════════════════════════════════════════╝\n""")
 
-    opcion = input(" ◘Que acción desea realizar? ")
+    option = input(" ◘Que acción desea realizar? ")
 
-    if opcion.isdigit():
-        opcion = int(opcion)
+    if option.isdigit():
+        option = int(option)
 
-        if opcion == 1:
-            if mazoJuego.cantdCart > 0:
-                cart_Selecc = mazoJuego.cartsMazo.pop()
+        if option == 1:
+            if gameDeck.cardsQuantity > 0:
+                cardSelected = gameDeck.deckCards.pop()
                 time.sleep(1)
-                print("     →Carta seleccionada: ║{} de {}║".format(cart_Selecc.numCarta, cart_Selecc.simbolo))
+                print("     →Carta seleccionada: ║{} de {}║".format(cardSelected.numCard, cardSelected.symbol))
                 while True:
                     desc = input(" •Deseas conservar esta carta (S/N)?: ").upper()
                     if desc == 'S':
@@ -138,19 +130,18 @@ def Menu(mazoJuego, pilaJuego, listJugadores, turno):
                             subDesc = input(" •Cuál de tus cartas deseas tirar? :")
                             if subDesc.isdigit():
                                 subDesc = int(subDesc)
-                                # AGREGAR UNA CONFIRMACION QUE VERIFIQUE SI SE CUENTA CON EL NUM DE CARTA INTRODUCIDO
-                                listElemt = []
-                                for elemt in listJugadores[turno].misCart:
-                                    listElemt.append(elemt.numCarta)
+                                listElemts = []
+                                for elemt in listPlayers[turn].myCards:
+                                    listElemts.append(elemt.numCard)
 
-                                if subDesc in listElemt:
+                                if subDesc in listElemts:
 
-                                    for carta in listJugadores[turno].misCart:
-                                        if carta.numCarta == subDesc:
-                                            listJugadores[turno].misCart.remove(carta)
-                                            pilaJuego.cartsPila.append(carta)
+                                    for card in listPlayers[turn].myCards:
+                                        if card.numCard == subDesc:
+                                            listPlayers[turn].myCards.remove(card)
+                                            gameStack.cardsStack.append(card)
                                             break
-                                    listJugadores[turno].misCart.append(cart_Selecc)
+                                    listPlayers[turn].myCard.append(cardSelected)
                                     break
                                 print(" ##-No cuentas con la carta que has indicado-##")
                                 input("    →Presiona [ENTER] para continuar")
@@ -159,29 +150,29 @@ def Menu(mazoJuego, pilaJuego, listJugadores, turno):
                                 input("    →Presiona [ENTER] para continuar")
                         break
                     elif desc == 'N':
-                        pilaJuego.cartsPila.append(cart_Selecc)
+                        gameStack.cardsStack.append(cardSelected)
                         break
             else:
                 print("     →Ya no quedan cartas en el mazo.")
-        elif opcion == 2:
-            cart_Selecc = pilaJuego.cartsPila.pop()
+        elif option == 2:
+            cardSelected = gameStack.cardsStack.pop()
 
             while True:
                 subDesc = input(" •Cuál de tus cartas deseas tirar? :")
                 if subDesc.isdigit():
                     subDesc = int(subDesc)
                     # AGREGAR UNA CONFIRMACION QUE VERIFIQUE SI SE CUENTA CON EL NUM DE CARTA INTRODUCIDO
-                    listElemt = []
-                    for elemt in listJugadores[turno].misCart:
-                        listElemt.append(elemt.numCarta)
+                    listElemts = []
+                    for elemt in listPlayers[turn].myCards:
+                        listElemts.append(elemt.numCard)
 
-                    if subDesc in listElemt:
-                        for carta in listJugadores[turno].misCart:
-                            if carta.numCarta == subDesc:
-                                listJugadores[turno].misCart.remove(carta)
-                                pilaJuego.cartsPila.append(carta)
+                    if subDesc in listElemts:
+                        for card in listPlayers[turn].misCart:
+                            if card.numCarta == subDesc:
+                                listPlayers[turn].myCard.remove(card)
+                                gameStack.cardsStack.append(card)
                                 break
-                        listJugadores[turno].misCart.append(cart_Selecc)
+                        listPlayers[turn].myCard.append(cardSelected)
                         break
                     print(" ##-No cuentas con la carta que has indicado-##")
                     input("    →Presiona [ENTER] para continuar")
@@ -193,42 +184,41 @@ def Menu(mazoJuego, pilaJuego, listJugadores, turno):
             print(" ###-Error opcion no valida-###")
             input()
             os.system('cls')
-            Mostrar_Menu()
-            Mostrar_Turno(listJugadores, turno)
-            Mostrar_Mazo(mazoJuego, pilaJuego)
-            Menu(mazoJuego, pilaJuego, listJugadores, turno)
+            display_menu()
+            display_turn(listPlayers, turn)
+            display_deck(gameDeck, gameStack)
+            Menu(gameDeck, gameStack, listPlayers, turn)
     else:
         os.system('cls')
         print(" ###-Error opcion no valida-###")
         input()
         os.system('cls')
-        Mostrar_Menu()
-        Mostrar_Turno(listJugadores, turno)
-        Mostrar_Mazo(mazoJuego, pilaJuego)
-        Menu(mazoJuego, pilaJuego, listJugadores, turno)
+        display_menu()
+        display_turn(listPlayers, turn)
+        display_deck(gameDeck, gameStack)
+        Menu(gameDeck, gameStack, listPlayers, turn)
 
 
-def Comprobar_Punto(listJugadores, turno, mazoJuego):
-    jugador = listJugadores[turno]
-    listCartas = []
+def check_point(listPlayers, turn, gameDeck):
+    player = listPlayers[turn]
+    listCards = []
 
-    for element in jugador.misCart:
-        listCartas.append(element.numCarta)
+    for element in player.myCards:
+        listCards.append(element.numCarta)
 
-    select = listCartas[0]
+    selected = listCards[0]
 
-    if 1 < listCartas.count(select) < 4:
-        for carta in listCartas[1:]:
-            if carta != select:
-                if (listCartas.count(carta) == 2 and listCartas.count(select) == 3) or (
-                        listCartas.count(carta) == 3 and listCartas.count(select) == 2):
-                    jugador.puntos += 1
+    if 1 < listCards.count(selected) < 4:
+        for card in listCards[1:]:
+            if card != selected:
+                if (listCards.count(card) == 2 and listCards.count(selected) == 3) or (
+                        listCards.count(card) == 3 and listCards.count(selected) == 2):
+                    player.puntos += 1
                     os.system('cls')
-                    print(" ###-{} ha ganado un punto-###".format(jugador.nombre))
-                    #input()
+                    print(" ###-{} ha ganado un punto-###".format(player.name))
                     time.sleep(2)
                     os.system('cls')
-                    Crear_ConjuntoCarts(mazoJuego, listJugadores)
+                    create_set_cards(gameDeck, listCards)
                     break
                 break
 
